@@ -27,6 +27,7 @@ import {
   ShoppingBag,
   Sliders
 } from "lucide-react";
+import SiteLogo from "../../components/SiteLogo";
 
 // --- Theme Types & Data ---
 interface Theme {
@@ -205,17 +206,7 @@ export default function PremiumThemesPage() {
             aria-label="Primary Navigation"
           >
             {/* Logo */}
-            <a
-              href="/"
-              className="flex items-center gap-2 text-lg font-bold tracking-tight text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded-lg"
-            >
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-shopify-neon opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-shopify-neon"></span>
-              </span>
-              Create<span className="text-shopify-neon">Myshop</span>
-              <span className="text-xs text-zinc-500 font-medium px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900/50">.in</span>
-            </a>
+            <SiteLogo />
 
             {/* Navigation Links */}
             <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
@@ -271,9 +262,11 @@ export default function PremiumThemesPage() {
               className="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm bg-zinc-950 border-l border-zinc-800 p-8 flex flex-col z-50 md:hidden"
             >
               <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-2 text-lg font-bold text-white">
-                  Create<span className="text-shopify-neon">Myshop</span>
-                </div>
+                <SiteLogo
+                  href="/"
+                  variant="mobile"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 rounded-full border border-zinc-800 text-zinc-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon"
@@ -623,10 +616,7 @@ export default function PremiumThemesPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-zinc-900/80">
           {/* Col 1 */}
           <div className="md:col-span-5 space-y-4">
-            <span className="text-lg font-bold text-white">
-              Create<span className="text-shopify-neon">Myshop</span>
-              <span className="text-xs text-zinc-500 font-medium px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900/50 ml-1">.in</span>
-            </span>
+            <SiteLogo variant="footer" />
             <p className="text-zinc-500 font-light text-sm max-w-sm leading-relaxed">
               We build custom Next.js frontends and high-performance Liquid templates engineered to increase average order value and boost conversion rates.
             </p>

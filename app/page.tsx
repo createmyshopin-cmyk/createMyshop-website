@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import {
   ArrowRight,
-  ArrowUpRight,
   BarChart3,
   Check,
   Cpu,
@@ -22,6 +21,7 @@ import {
   Code,
   Laptop
 } from "lucide-react";
+import SiteLogo from "../components/SiteLogo";
 
 // --- Types & Constants ---
 interface FAQItem {
@@ -181,17 +181,7 @@ export default function Home() {
           aria-label="Primary Navigation"
         >
           {/* Logo */}
-          <a
-            href="#"
-            className="flex items-center gap-2 text-lg font-bold tracking-tight text-white hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded-lg"
-          >
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-shopify-neon opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-shopify-neon"></span>
-            </span>
-            Create<span className="text-shopify-neon">Myshop</span>
-            <span className="text-xs text-zinc-500 font-medium px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900/50">.in</span>
-          </a>
+          <SiteLogo href="/" />
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
@@ -245,9 +235,11 @@ export default function Home() {
               className="fixed right-0 top-0 bottom-0 w-4/5 max-w-sm bg-zinc-950 border-l border-zinc-800 p-8 flex flex-col z-50 md:hidden"
             >
               <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-2 text-lg font-bold text-white">
-                  Create<span className="text-shopify-neon">Myshop</span>
-                </div>
+                <SiteLogo
+                  href="/"
+                  variant="mobile"
+                  onClick={() => setMobileMenuOpen(false)}
+                />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 rounded-full border border-zinc-800 text-zinc-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon"
@@ -347,7 +339,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mb-16"
+          className="flex flex-col-reverse sm:flex-row gap-4 w-full sm:w-auto justify-center mb-16"
         >
           <a
             href="#contact"
@@ -357,11 +349,17 @@ export default function Home() {
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="#contact"
-            className="group flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-900 hover:border-zinc-700 transition-colors cursor-pointer min-h-[48px]"
+            href="https://www.shopify.com/partners/directory/partner/tuttusky-soft"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-center overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/40 px-6 py-3 hover:border-zinc-700 hover:bg-zinc-900 transition-all cursor-pointer min-h-[48px]"
+            aria-label="View CreateMyShop on Shopify Partners Directory"
           >
-            Request Free Audit
-            <ArrowUpRight className="w-4 h-4 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <img
+              src="/shopify-partner.svg"
+              alt="Shopify Partner"
+              className="h-7 w-auto max-w-[180px] object-contain transition-transform group-hover:scale-[1.02]"
+            />
           </a>
         </motion.div>
 
@@ -1057,10 +1055,7 @@ export default function Home() {
           
           {/* Col 1: Brand Info */}
           <div className="md:col-span-5 space-y-4">
-            <span className="text-lg font-bold text-white">
-              Create<span className="text-shopify-neon">Myshop</span>
-              <span className="text-xs text-zinc-500 font-medium px-1.5 py-0.5 rounded border border-zinc-800 bg-zinc-900/50 ml-1">.in</span>
-            </span>
+            <SiteLogo variant="footer" />
             <p className="text-zinc-500 font-light text-sm max-w-sm leading-relaxed">
               We build custom Next.js frontends and high-performance Liquid templates engineered to increase average order value and boost conversion rates.
             </p>

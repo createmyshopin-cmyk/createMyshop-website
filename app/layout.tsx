@@ -38,7 +38,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CreateMyshop | Premium Shopify Growth & Conversion Agency",
     description: "Engineered for Conversion. Built for Scale. Blazing-fast custom themes and headless Shopify development.",
-  }
+  },
+  icons: {
+    icon: "/createmyshop-logo.png",
+    apple: "/createmyshop-logo.png",
+  },
 };
 
 export default function RootLayout({
