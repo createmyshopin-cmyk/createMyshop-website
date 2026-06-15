@@ -11,12 +11,22 @@ import {
   MapPin,
   Menu,
   MessageCircle,
+  Navigation,
   Phone,
   Send,
   X,
 } from "lucide-react";
 import SiteLogo from "../../components/SiteLogo";
 import MobileHeaderTagline from "../../components/MobileHeaderTagline";
+
+const MAPS_PLACE_URL =
+  "https://www.google.com/maps/place/CreateMyshop.in/data=!4m2!3m1!1s0x0:0xea216bd80c116f88?sa=X&ved=1t:2428&ictx=111";
+
+const MAPS_DIRECTIONS_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=CreateMyshop.in&destination_place_id=0x0:0xea216bd80c116f88";
+
+const MAPS_EMBED_URL =
+  "https://maps.google.com/maps?q=CreateMyshop.in,Kochi,Kerala,India&hl=en&z=16&output=embed";
 
 const CONTACT_INFO = [
   {
@@ -40,8 +50,8 @@ const CONTACT_INFO = [
   {
     icon: MapPin,
     label: "Location",
-    value: "Kochi, Kerala, India",
-    href: "https://maps.google.com/?q=Kochi,Kerala,India",
+    value: "CreateMyshop.in — Kochi, Kerala",
+    href: MAPS_PLACE_URL,
   },
   {
     icon: Globe,
@@ -315,6 +325,38 @@ export default function ContactPage() {
                 )}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 pb-24 max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/30 shadow-2xl glass-panel">
+          <div className="flex flex-col gap-4 border-b border-zinc-800 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div className="space-y-2 text-left">
+              <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">Find Us</span>
+              <h2 className="text-2xl font-extrabold text-white">CreateMyshop.in Office</h2>
+              <p className="text-sm text-zinc-400">Kochi, Kerala, India</p>
+            </div>
+            <a
+              href={MAPS_DIRECTIONS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-shopify-neon px-6 py-3.5 text-sm font-semibold text-black transition-all hover:bg-white hover:shadow-[0_0_15px_rgba(0,240,118,0.3)] min-h-[48px]"
+            >
+              Get Directions
+              <Navigation className="h-4 w-4" />
+            </a>
+          </div>
+
+          <div className="relative aspect-[16/10] min-h-[280px] w-full sm:aspect-[21/9]">
+            <iframe
+              src={MAPS_EMBED_URL}
+              title="CreateMyshop.in location on Google Maps"
+              className="absolute inset-0 h-full w-full border-0 grayscale-[20%] contrast-[1.05]"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>
