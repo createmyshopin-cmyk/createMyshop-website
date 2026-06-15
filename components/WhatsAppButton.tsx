@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { playMessageNotification, setupMessageAudioUnlock } from "../lib/messageNotification";
 
 export default function WhatsAppButton() {
   const phoneNumber = "918848772371";
@@ -11,9 +12,20 @@ export default function WhatsAppButton() {
 
   const [showPopup, setShowPopup] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const alertPlayedRef = useRef(false);
+
+  useEffect(() => setupMessageAudioUnlock(), []);
 
   useEffect(() => {
-    const showTimer = window.setTimeout(() => setShowPopup(true), 2200);
+    const showTimer = window.setTimeout(() => {
+      setShowPopup(true);
+
+      if (!alertPlayedRef.current) {
+        alertPlayedRef.current = true;
+        void playMessageNotification();
+      }
+    }, 6000);
+
     return () => window.clearTimeout(showTimer);
   }, []);
 
