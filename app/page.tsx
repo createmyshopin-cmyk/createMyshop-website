@@ -15,13 +15,12 @@ import {
   TrendingUp,
   X,
   Zap,
-  CheckCircle2,
   Globe,
-  Activity,
   Code,
   Laptop
 } from "lucide-react";
 import SiteLogo from "../components/SiteLogo";
+import MobileHeaderTagline from "../components/MobileHeaderTagline";
 
 // --- Types & Constants ---
 interface FAQItem {
@@ -182,6 +181,7 @@ export default function Home() {
         >
           {/* Logo */}
           <SiteLogo href="/" />
+          <MobileHeaderTagline />
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
@@ -190,13 +190,13 @@ export default function Home() {
             <a href="/shopify-premium-themes" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1">Themes</a>
             <a href="/shopify_App_Developement_in_kerala" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1">App Dev</a>
             <a href="#faq" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1">FAQ</a>
-            <a href="#contact" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1">Contact</a>
+            <a href="/contact" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1">Contact</a>
           </div>
 
           {/* Glowing CTA Button */}
           <div className="flex items-center gap-3">
             <a
-              href="#contact"
+              href="/contact"
               className="hidden sm:inline-flex items-center gap-1.5 px-4.5 py-2 rounded-full text-xs font-semibold bg-shopify-neon text-black hover:bg-white shadow-[0_0_15px_rgba(0,240,118,0.25)] hover:shadow-[0_0_25px_rgba(0,240,118,0.5)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b] focus-visible:ring-shopify-neon"
             >
               Start Scaling
@@ -286,7 +286,7 @@ export default function Home() {
                   FAQ
                 </a>
                 <a
-                  href="#contact"
+                  href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
                   className="hover:text-shopify-neon transition-colors"
                 >
@@ -296,7 +296,7 @@ export default function Home() {
 
               <div className="mt-auto pt-8 border-t border-zinc-900">
                 <a
-                  href="#contact"
+                  href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex w-full items-center justify-center gap-2 py-4 rounded-xl font-semibold bg-shopify-neon text-black hover:bg-white shadow-lg transition-all duration-300"
                 >
@@ -342,7 +342,7 @@ export default function Home() {
           className="flex flex-col-reverse sm:flex-row gap-4 w-full sm:w-auto justify-center mb-16"
         >
           <a
-            href="#contact"
+            href="/contact"
             className="group relative flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold bg-shopify-neon text-black hover:bg-white shadow-[0_0_20px_rgba(0,240,118,0.3)] hover:shadow-[0_0_35px_rgba(0,240,118,0.6)] transition-all duration-300 cursor-pointer min-h-[48px]"
           >
             Scale Your Business
@@ -826,7 +826,7 @@ export default function Home() {
               </p>
               <div className="pt-2">
                 <a
-                  href="#contact"
+                  href="/contact"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-shopify-neon hover:text-white transition-colors group"
                 >
                   Analyze your site speed
@@ -966,83 +966,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CONTACT / CTA SECTION --- */}
-      <section id="contact" className="relative z-10 py-24 max-w-5xl mx-auto px-6 lg:px-8">
-        <div className="relative glass-panel rounded-3xl border-white/5 shadow-2xl p-8 sm:p-12 md:p-16 overflow-hidden">
-          
-          {/* Neon Glow overlay */}
+      {/* --- CONTACT CTA --- */}
+      <section className="relative z-10 py-20 max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="relative glass-panel rounded-3xl border-white/5 shadow-2xl p-8 sm:p-12 text-center overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-shopify-neon/40 to-transparent" />
-          <div className="absolute -bottom-48 left-1/2 -translate-x-1/2 w-96 h-96 bg-shopify-neon/5 blur-[80px] pointer-events-none" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            {/* Left Texts */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/30 text-[10px] font-bold tracking-wider text-zinc-400 uppercase">
-                <Activity className="w-3.5 h-3.5 text-shopify-neon" />
-                Let&apos;s Build Something Great
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                Ready to Double Your Store Conversion Rate?
-              </h2>
-              <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed">
-                Contact us to schedule a comprehensive code and performance speed audit. We will review your current Shopify infrastructure and map out custom conversion actions.
-              </p>
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3 text-xs font-semibold text-zinc-400">
-                  <CheckCircle2 className="w-4 h-4 text-shopify-neon" />
-                  <span>Complimentary performance audit report</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs font-semibold text-zinc-400">
-                  <CheckCircle2 className="w-4 h-4 text-shopify-neon" />
-                  <span>30-minute growth roadmap session</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Audit Request Form */}
-            <div className="lg:col-span-6 bg-zinc-950/80 border border-zinc-900 p-6 rounded-2xl space-y-4 shadow-xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">Schedule Audit</span>
-              <form onSubmit={(e) => { e.preventDefault(); alert("Audit Scheduled! Our team will contact you in 12 hours."); }} className="space-y-4">
-                <div>
-                  <label htmlFor="store-url" className="sr-only">Store URL</label>
-                  <input
-                    id="store-url"
-                    type="url"
-                    required
-                    placeholder="yourstore.com"
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-900/50 text-white placeholder-zinc-500 focus:outline-none focus:border-shopify-neon focus:ring-1 focus:ring-shopify-neon text-sm transition-all"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="sr-only">Work Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    placeholder="name@company.com"
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-900/50 text-white placeholder-zinc-500 focus:outline-none focus:border-shopify-neon focus:ring-1 focus:ring-shopify-neon text-sm transition-all"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="sr-only">Message (Optional)</label>
-                  <textarea
-                    id="message"
-                    rows={3}
-                    placeholder="Tell us about your conversion/speed bottlenecks..."
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-900/50 text-white placeholder-zinc-500 focus:outline-none focus:border-shopify-neon focus:ring-1 focus:ring-shopify-neon text-sm transition-all"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-shopify-neon text-black hover:bg-white hover:shadow-[0_0_15px_rgba(0,240,118,0.3)] transition-all cursor-pointer min-h-[44px]"
-                >
-                  Request Free Audit
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
-            </div>
+          <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-80 h-80 bg-shopify-neon/5 blur-[80px] pointer-events-none" />
+          <div className="relative z-10 space-y-6">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+              Ready to Double Your Store Conversion Rate?
+            </h2>
+            <p className="text-zinc-400 font-light text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+              Book a free Shopify audit and get a custom growth roadmap from our Kerala-based experts.
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold bg-shopify-neon text-black hover:bg-white shadow-[0_0_20px_rgba(0,240,118,0.3)] hover:shadow-[0_0_35px_rgba(0,240,118,0.6)] transition-all duration-300 min-h-[48px]"
+            >
+              Contact Us
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
-
         </div>
       </section>
 
@@ -1071,7 +1014,7 @@ export default function Home() {
               <li><a href="/shopify_App_Developement_in_kerala" className="hover:text-white transition-colors">App Dev</a></li>
               <li><a href="#performance" className="hover:text-white transition-colors">Performance</a></li>
               <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
-              <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
+              <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
 

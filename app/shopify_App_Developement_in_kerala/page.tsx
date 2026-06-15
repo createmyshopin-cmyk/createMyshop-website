@@ -27,6 +27,7 @@ import {
   Database
 } from "lucide-react";
 import SiteLogo from "../../components/SiteLogo";
+import MobileHeaderTagline from "../../components/MobileHeaderTagline";
 
 // --- Types & Data ---
 interface AppFeature {
@@ -160,6 +161,7 @@ export default function ShopifyAppDevPage() {
           >
             {/* Logo */}
             <SiteLogo />
+            <MobileHeaderTagline />
 
             {/* Navigation Links */}
             <div className="hidden md:flex items-center gap-5 lg:gap-6 text-sm font-medium text-zinc-400 whitespace-nowrap flex-nowrap shrink-0">
@@ -169,13 +171,13 @@ export default function ShopifyAppDevPage() {
               <a href="#" className="text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1 whitespace-nowrap">App Dev</a>
               <a href="/#performance" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1 whitespace-nowrap">Performance</a>
               <a href="/#faq" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1 whitespace-nowrap">FAQ</a>
-              <a href="/#contact" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1 whitespace-nowrap">Contact</a>
+              <a href="/contact" className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-shopify-neon rounded px-1 whitespace-nowrap">Contact</a>
             </div>
 
             {/* Glowing CTA Button */}
             <div className="flex shrink-0 items-center gap-3">
               <a
-                href="/#contact"
+                href="/contact"
                 className="hidden sm:inline-flex items-center gap-1.5 px-4.5 py-2 rounded-full text-xs font-semibold bg-shopify-neon text-black hover:bg-white shadow-[0_0_12px_rgba(0,240,118,0.25)] hover:shadow-[0_0_20px_rgba(0,240,118,0.4)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b] focus-visible:ring-shopify-neon"
               >
                 Start Scaling
@@ -273,7 +275,7 @@ export default function ShopifyAppDevPage() {
                   FAQ
                 </a>
                 <a
-                  href="/#contact"
+                  href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
                   className="hover:text-shopify-neon transition-colors"
                 >
@@ -283,7 +285,7 @@ export default function ShopifyAppDevPage() {
 
               <div className="mt-auto pt-8 border-t border-zinc-900">
                 <a
-                  href="/#contact"
+                  href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex w-full items-center justify-center gap-2 py-4 rounded-xl font-semibold bg-shopify-neon text-black hover:bg-white shadow-lg transition-all duration-300"
                 >
@@ -441,7 +443,7 @@ export default function ShopifyAppDevPage() {
 
           <div className="pt-6 border-t border-zinc-900 mt-8">
             <a
-              href="/#contact"
+              href="/contact"
               className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-xs font-bold bg-shopify-neon text-black hover:bg-white shadow-[0_0_15px_rgba(0,240,118,0.2)] hover:shadow-[0_0_25px_rgba(0,240,118,0.4)] transition-all cursor-pointer min-h-[44px]"
             >
               Consult On App Development
@@ -640,14 +642,14 @@ export default function ShopifyAppDevPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4">
               <a
-                href="/#contact"
+                href="/contact"
                 className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold bg-shopify-neon text-black hover:bg-white shadow-[0_0_15px_rgba(0,240,118,0.3)] transition-all cursor-pointer min-h-[44px]"
               >
                 Book a Free CRO Audit
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="/#contact"
+                href="/contact"
                 className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-900 hover:border-zinc-700 transition-colors cursor-pointer min-h-[44px]"
               >
                 Talk to an Expert
@@ -681,7 +683,7 @@ export default function ShopifyAppDevPage() {
               <li><a href="#" className="hover:text-white transition-colors">App Dev</a></li>
               <li><a href="/#performance" className="hover:text-white transition-colors">Performance</a></li>
               <li><a href="/#faq" className="hover:text-white transition-colors">FAQ</a></li>
-              <li><a href="/#contact" className="hover:text-white transition-colors">Contact</a></li>
+              <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
 
