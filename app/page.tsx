@@ -103,14 +103,6 @@ export default function Home() {
   const [activeFAQ, setActiveFAQ] = useState<number | null>(null);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success">("idle");
-  const [dashboardTab, setDashboardTab] = useState<"sales" | "orders" | "speed">("sales");
-  const [liveSales, setLiveSales] = useState(148620);
-  const [liveOrders, setLiveOrders] = useState([
-    { id: 1, location: "Kochi, KL", amount: "₹12,450.00", time: "Just now", items: "1x Organic Cotton Kurti" },
-    { id: 2, location: "Trivandrum, KL", amount: "₹8,900.00", time: "2 min ago", items: "2x Premium Linen Shirts" },
-    { id: 3, location: "Calicut, KL", amount: "₹15,200.00", time: "4 min ago", items: "1x Handcrafted Jute Tote" }
-  ]);
-
   // Track page scroll to style Floating Navbar
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -120,37 +112,6 @@ export default function Home() {
       setIsScrolled(latest > 20);
     });
   }, [scrollY]);
-
-  // Simulate real-time orders feed on Dashboard
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Increment sales slightly
-      const deltaSales = Math.floor(Math.random() * 1500) + 500;
-      setLiveSales((prev) => prev + deltaSales);
-
-      // Add new simulated order
-      const locations = ["Kochi, KL", "Trivandrum, KL", "Calicut, KL", "Thrissur, KL", "Kottayam, KL", "Bangalore, KA"];
-      const items = ["1x Handcrafted Brass Lamp", "2x Kasavu Saree", "1x Spiced Tea Wellness Pack", "1x Coir Comfort Rug", "2x Traditional Sandalwood Oils"];
-      const locIdx = Math.floor(Math.random() * locations.length);
-      const itemIdx = Math.floor(Math.random() * items.length);
-      const amountVal = (Math.random() * 8000 + 1500).toFixed(2);
-      
-      const newOrder = {
-        id: Date.now(),
-        location: locations[locIdx],
-        amount: `₹${parseFloat(amountVal).toLocaleString("en-IN")}`,
-        time: "Just now",
-        items: items[itemIdx]
-      };
-
-      setLiveOrders((prev) => [
-        newOrder,
-        ...prev.map(o => o.time === "Just now" ? { ...o, time: "1 min ago" } : o).slice(0, 3)
-      ]);
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -339,7 +300,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col-reverse sm:flex-row gap-4 w-full sm:w-auto justify-center mb-16"
+          className="flex flex-col-reverse sm:flex-row gap-4 w-full sm:w-auto justify-center"
         >
           <a
             href="/contact"
@@ -361,195 +322,6 @@ export default function Home() {
               className="h-7 w-auto max-w-[180px] object-contain transition-transform group-hover:scale-[1.02]"
             />
           </a>
-        </motion.div>
-
-        {/* Visual Component: 3D perspective dashboard */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="w-full max-w-4xl relative"
-        >
-          {/* Ambient Glows */}
-          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-shopify-neon/20 to-shopify-dark/20 opacity-30 blur-xl pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-shopify-neon/10 blur-[80px] pointer-events-none" />
-
-          {/* Perspective Container */}
-          <div className="w-full glass-panel rounded-2xl border-white/5 shadow-2xl p-6 bg-zinc-950/80 relative text-left">
-            {/* Top border glow */}
-            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-shopify-neon/30 to-transparent" />
-            
-            {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-zinc-900 pb-4 mb-4 gap-3">
-              <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-zinc-800" />
-                <span className="w-3 h-3 rounded-full bg-zinc-800" />
-                <span className="w-3 h-3 rounded-full bg-zinc-800" />
-                <span className="text-xs font-semibold text-zinc-500 ml-2">create-myshop-dashboard v2.1</span>
-              </div>
-              
-              {/* Dashboard Tabs selector */}
-              <div className="flex gap-1.5 bg-zinc-900 border border-zinc-800 p-1 rounded-lg">
-                <button
-                  onClick={() => setDashboardTab("sales")}
-                  className={`px-3 py-1 rounded text-[10px] font-bold tracking-wider transition-all ${
-                    dashboardTab === "sales" ? "bg-zinc-800 text-shopify-neon" : "text-zinc-500 hover:text-zinc-300"
-                  }`}
-                >
-                  SALES
-                </button>
-                <button
-                  onClick={() => setDashboardTab("orders")}
-                  className={`px-3 py-1 rounded text-[10px] font-bold tracking-wider transition-all ${
-                    dashboardTab === "orders" ? "bg-zinc-800 text-shopify-neon" : "text-zinc-500 hover:text-zinc-300"
-                  }`}
-                >
-                  LIVE FEED
-                </button>
-                <button
-                  onClick={() => setDashboardTab("speed")}
-                  className={`px-3 py-1 rounded text-[10px] font-bold tracking-wider transition-all ${
-                    dashboardTab === "speed" ? "bg-zinc-800 text-shopify-neon" : "text-zinc-500 hover:text-zinc-300"
-                  }`}
-                >
-                  SPEED SCORE
-                </button>
-              </div>
-            </div>
-            
-            {/* Grid Content */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-              
-              {/* Left Column: Lighthouse Score */}
-              <div className="flex flex-col items-center justify-center p-6 bg-zinc-900/30 border border-zinc-900 rounded-xl">
-                <div className="relative h-28 w-28 flex items-center justify-center">
-                  <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="42" fill="none" stroke="#18181b" strokeWidth="8" />
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="42"
-                      fill="none"
-                      stroke="#00F076"
-                      strokeWidth="8"
-                      strokeDasharray="264"
-                      strokeDashoffset={264 - (264 * 99) / 100}
-                      className="drop-shadow-[0_0_8px_rgba(0,240,118,0.5)]"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center mt-1">
-                    <span className="text-3xl font-extrabold text-white">99</span>
-                    <span className="text-[9px] font-bold text-zinc-400">LIGHTHOUSE</span>
-                  </div>
-                </div>
-                <span className="text-[10px] font-extrabold text-shopify-neon mt-3">SPEED SCORE: OPTIMAL</span>
-              </div>
-              
-              {/* Right Columns: Metrics & Trajectory */}
-              <div className="md:col-span-2 space-y-4">
-                
-                {/* Switchable content */}
-                {dashboardTab === "sales" && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="space-y-4"
-                  >
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="p-3.5 bg-zinc-900/30 border border-zinc-900 rounded-xl">
-                        <span className="text-[9px] font-bold text-zinc-500 uppercase">Interactive Store Revenue</span>
-                        <div className="text-xl font-bold text-white mt-0.5">₹{liveSales.toLocaleString("en-IN")}</div>
-                      </div>
-                      <div className="p-3.5 bg-zinc-900/30 border border-zinc-900 rounded-xl">
-                        <span className="text-[9px] font-bold text-zinc-500 uppercase">Conversion Rate</span>
-                        <div className="text-xl font-bold text-white mt-0.5">4.82% (+34%)</div>
-                      </div>
-                    </div>
-                    
-                    {/* Sales chart */}
-                    <div className="p-3.5 bg-zinc-900/30 border border-zinc-900 rounded-xl space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-[9px] font-bold text-zinc-500 uppercase">Kerala Storefront Performance</span>
-                        <span className="text-[10px] font-black text-shopify-neon">+280% Year-over-Year</span>
-                      </div>
-                      <svg viewBox="0 0 300 70" className="w-full h-14 text-shopify-neon overflow-visible">
-                        <defs>
-                          <linearGradient id="glowGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="#00F076" stopOpacity="0.2" />
-                            <stop offset="100%" stopColor="#00F076" stopOpacity="0" />
-                          </linearGradient>
-                        </defs>
-                        <path d="M 0 60 Q 45 40 90 50 T 180 20 T 270 10 H 300 L 300 70 L 0 70 Z" fill="url(#glowGrad)" />
-                        <path d="M 0 60 Q 45 40 90 50 T 180 20 T 270 10 H 300" fill="none" stroke="currentColor" strokeWidth="2.5" className="drop-shadow-[0_0_6px_rgba(0,240,118,0.4)]" />
-                        <circle cx="270" cy="10" r="3.5" fill="#00F076" className="animate-pulse" />
-                      </svg>
-                    </div>
-                  </motion.div>
-                )}
-
-                {dashboardTab === "orders" && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="space-y-3"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Live Order Feed (Kerala Stores)</span>
-                      <span className="h-1.5 w-1.5 rounded-full bg-shopify-neon animate-ping" />
-                    </div>
-                    <div className="space-y-2">
-                      {liveOrders.map((order) => (
-                        <div
-                          key={order.id}
-                          className="flex items-center justify-between p-2.5 rounded-lg border border-zinc-800/80 bg-zinc-900/40 text-xs"
-                        >
-                          <div className="flex flex-col gap-0.5">
-                            <span className="font-bold text-white">{order.location}</span>
-                            <span className="text-[10px] text-zinc-500">{order.items}</span>
-                          </div>
-                          <div className="text-right">
-                            <span className="font-bold text-shopify-neon">{order.amount}</span>
-                            <span className="text-[9px] text-zinc-500 block">{order.time}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-
-                {dashboardTab === "speed" && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="grid grid-cols-2 gap-4 py-2"
-                  >
-                    <div className="p-3 bg-zinc-900/30 border border-zinc-900 rounded-xl space-y-1">
-                      <span className="text-[9px] font-bold text-zinc-500 uppercase">First Contentful Paint</span>
-                      <div className="text-lg font-bold text-white">0.4s</div>
-                      <span className="text-[9px] text-shopify-neon font-semibold">✓ Passing Core Web Vitals</span>
-                    </div>
-                    <div className="p-3 bg-zinc-900/30 border border-zinc-900 rounded-xl space-y-1">
-                      <span className="text-[9px] font-bold text-zinc-500 uppercase">Total Blocking Time</span>
-                      <div className="text-lg font-bold text-white">40ms</div>
-                      <span className="text-[9px] text-shopify-neon font-semibold">✓ Optimized JS bundles</span>
-                    </div>
-                    <div className="p-3 bg-zinc-900/30 border border-zinc-900 rounded-xl space-y-1">
-                      <span className="text-[9px] font-bold text-zinc-500 uppercase">Cumulative Layout Shift</span>
-                      <div className="text-lg font-bold text-white">0.00</div>
-                      <span className="text-[9px] text-shopify-neon font-semibold">✓ Zero shifts detected</span>
-                    </div>
-                    <div className="p-3 bg-zinc-900/30 border border-zinc-900 rounded-xl space-y-1">
-                      <span className="text-[9px] font-bold text-zinc-500 uppercase">Speed Index</span>
-                      <div className="text-lg font-bold text-white">0.6s</div>
-                      <span className="text-[9px] text-shopify-neon font-semibold">✓ High cache hit ratio</span>
-                    </div>
-                  </motion.div>
-                )}
-                
-              </div>
-              
-            </div>
-          </div>
         </motion.div>
       </section>
 
