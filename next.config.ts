@@ -1,7 +1,28 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* Hostinger serves via `next start` from project root; standalone omits .next/static unless copied manually. */
+  async headers() {
+    return [
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/((?!_next/static).*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "private, no-cache, no-store, max-age=0, must-revalidate",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
